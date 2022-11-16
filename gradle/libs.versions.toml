@@ -1,0 +1,30 @@
+[versions]
+# kotlin
+kotlinVersion = "1.7.21"
+# kotlinx
+coroutinesVersion = "1.6.4"
+
+# multiplatform
+kermitVersion = "1.2.2"
+
+# android
+androidGradlePluginVersion = "7.3.1"
+lifecycleVersion = "2.5.1"
+fragmentVersion = "1.5.4"
+
+[libraries]
+#===========MULTIPLATFORM===========#
+# kotlinx
+mpp-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+mpp-kermit = { module = "co.touchlab:kermit", version.ref = "kermitVersion" }
+
+#===========ANDROID===========#
+#androidX
+android-x-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
+android-x-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
+android-x-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
+android-x-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentVersion" }
+
+#===========GRADLE PLUGINS ARTIFACTS===========#
+plugin-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+plugin-android-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePluginVersion" }
