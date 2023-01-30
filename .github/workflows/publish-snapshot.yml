@@ -1,0 +1,37 @@
+name: Publish Snapshot builds
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish_snapshot:
+    name: Snapshot build and publish
+    runs-on: macos-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3.3.0
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3.9.0
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Snapshot build
+      run: ./gradlew assemble compileKotlinIosArm64 compileKotlinIosX64
+
+    - name: Verify library sources
+      run: ./gradlew detektAll ktlintCheck lintRelease
+
+    - name: Publish to Sonatype
+      run: ./gradlew :mvi-core:publishAllPublicationsToMavenCentralRepository
+      env:
+        ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
+        ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
+        ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+        ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
+        ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+        SNAPSHOT: true
