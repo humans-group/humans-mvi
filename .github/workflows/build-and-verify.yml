@@ -3,6 +3,7 @@ name: Build and Verify library
 on:
   pull_request:
     branches: [ $default-branch ]
+  workflow_dispatch:
 
 jobs:
   build_and_verify:
