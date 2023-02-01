@@ -1,5 +1,8 @@
 Properties properties = new Properties()
-project.rootProject.file('local.properties').withInputStream { is -> properties.load(is) }
+def file = project.rootProject.file('sonatype-cred.properties')
+if (file.exists()) {
+    file.withInputStream { is -> properties.load(is) }
+}
 
 ext["ossrhUsername"] = properties["ossrhUsername"] ?: System.getenv('OSSRH_USERNAME')
 ext["ossrhPassword"] = properties["ossrhPassword"] ?: System.getenv('OSSRH_PASSWORD')
