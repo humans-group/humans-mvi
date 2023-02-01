@@ -1,5 +1,5 @@
 Properties properties = new Properties()
-def file = project.rootProject.file('sonatype-cred.properties')
+def file = project.rootProject.file('local.properties')
 if (file.exists()) {
     file.withInputStream { is -> properties.load(is) }
 }
