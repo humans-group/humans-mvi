@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  publish-snapshot:
+  publish_snapshot:
     name: Snapshot build and publish
     runs-on: macos-latest
     steps:
