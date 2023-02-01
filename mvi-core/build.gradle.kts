@@ -3,6 +3,8 @@ plugins {
     id("dev.icerock.mobile.multiplatform.ios-framework")
 }
 
+apply("${rootProject.projectDir}/publishing/publishing-module.gradle")
+
 dependencies {
     with(libs.mpp) {
         commonMainImplementation(kotlinx.coroutines)

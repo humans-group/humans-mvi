@@ -1,0 +1,56 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        // For Android libraries
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        // For pure Kotlin libraries, in case you have them
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            pom {
+                name = "humans-mvi"
+                description = 'Simple and concise implementation of Redux/MVI approach by Humans.'
+                url = 'https://github.com/humans-group/humans-mvi'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/humans-group/humans-mvi/blob/main/LICENSE.md'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'humans-group'
+                        name = 'Humans Group'
+                        email = 'mobile_dev_service@humans.net'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/humans-group/humans-mvi'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+    sign publishing.publications
+}

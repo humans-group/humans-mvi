@@ -1,0 +1,24 @@
+name: Build and Verify library
+
+on:
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  build-verify:
+    name: Build and Verify library
+    runs-on: macos-latest
+    steps:
+        uses: actions/checkout@v3.3.0
+      - name: set up JDK 11
+        uses: actions/setup-java@v3.9.0
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Build library sources
+        run: ./gradlew assemble compileKotlinIosArm64 compileKotlinIosX64
+
+      - name: Verify library sources
+        run: ./gradlew detektAll ktlintCheck lintRelease
