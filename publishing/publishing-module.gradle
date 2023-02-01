@@ -1,7 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-task androidSourcesJar(type: Jar) {
+task libSourcesJar(type: Jar) {
     archiveClassifier.set('sources')
     if (project.plugins.findPlugin("com.android.library")) {
         // For Android libraries
@@ -15,12 +15,14 @@ task androidSourcesJar(type: Jar) {
 }
 
 artifacts {
-    archives androidSourcesJar
+    archives libSourcesJar
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
+            artifact libSourcesJar
+
             pom {
                 name = "humans-mvi"
                 description = 'Simple and concise implementation of Redux/MVI approach by Humans.'
@@ -39,6 +41,8 @@ publishing {
                     }
                 }
                 scm {
+                    connection = 'scm:git:github.com/humans-group/humans-mvi.git'
+                    developerConnection = 'scm:git:ssh://github.com/humans-group/humans-mvi.git'
                     url = 'https://github.com/humans-group/humans-mvi'
                 }
             }
