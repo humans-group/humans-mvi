@@ -1,6 +1,7 @@
 plugins {
     id("multiplatform-library-convention")
     id("dev.icerock.mobile.multiplatform.ios-framework")
+    id("maven-publish")
 }
 
 apply("${rootProject.projectDir}/publishing/publishing-module.gradle")
