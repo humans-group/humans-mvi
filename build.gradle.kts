@@ -23,7 +23,7 @@ subprojects {
         mavenLocal()
     }
     group = "net.humans.kmm.mvi"
-    version = "2022.11.16"
+    version = "2023.02.02"
 
     setupJavaTarget(this)
 }
