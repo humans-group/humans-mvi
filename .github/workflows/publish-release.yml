@@ -20,14 +20,14 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Snapshot build
+    - name: Release build
       run: ./gradlew assemble compileKotlinIosArm64 compileKotlinIosX64
 
     - name: Verify library sources
       run: ./gradlew detektAll ktlintCheck lintRelease
 
     - name: Publish to Sonatype
-      run: ./gradlew :mvi-core:publishAllPublicationsToMavenCentralRepository closeAndReleaseRepository
+      run: ./gradlew :mvi-core:publishAllPublicationsToMavenCentralRepository :mvi-core:closeAndReleaseRepository
       env:
         ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
         ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
