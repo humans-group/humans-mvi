@@ -13,10 +13,7 @@ buildscript {
 
 plugins {
     id("configuration-detekt-convention")
-    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
-
-apply("${rootDir}/publishing/publishing-root.gradle")
 
 subprojects {
     apply(plugin = "configuration-ktlint-convention")
