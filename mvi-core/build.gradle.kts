@@ -21,8 +21,16 @@ dependencies {
 framework {
 }
 
+// Library publishing config
+val versionSuffix = when (project.findProperty("SNAPSHOT")) {
+    null,
+    true -> "-SNAPSHOT"
+    else -> ""
+}
+project.version = project.version.toString() + versionSuffix
+
 mavenPublishing {
-    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01, versionSuffix.isEmpty())
 
     coordinates(project.group.toString(), "mvi-core", project.version.toString())
 
