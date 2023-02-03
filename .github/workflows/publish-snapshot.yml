@@ -1,9 +1,10 @@
 name: Publish Snapshot builds
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: # temporarily run SNAPSHOTS manually
+#  push:
+#    branches:
+#      - main
 
 jobs:
   publish_snapshot:

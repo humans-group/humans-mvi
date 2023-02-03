@@ -22,15 +22,15 @@ framework {
 }
 
 // Library publishing config
-val versionSuffix = when (project.findProperty("SNAPSHOT")) {
-    null,
-    true -> "-SNAPSHOT"
+val versionSuffix = when (System.getenv("SNAPSHOT")) {
+    null -> "-TEST"
+    "true" -> "-SNAPSHOT"
     else -> ""
 }
 project.version = project.version.toString() + versionSuffix
 
 mavenPublishing {
-    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01, versionSuffix.isEmpty())
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
 
     coordinates(project.group.toString(), "mvi-core", project.version.toString())
 
