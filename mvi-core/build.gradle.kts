@@ -14,11 +14,10 @@ dependencies {
         commonMainImplementation(kermit)
     }
 
-    with(libs.android) {
-        androidMainImplementation(x.lifecycle.livedata)
-        androidMainImplementation(x.lifecycle.viewModel)
-        androidMainImplementation(x.lifecycle.runtime)
-        androidMainImplementation(x.fragment)
+    with(libs.androidx) {
+        androidMainImplementation(lifecycle.livedata)
+        androidMainImplementation(lifecycle.viewModel)
+        androidMainImplementation(lifecycle.runtime)
     }
 }
 

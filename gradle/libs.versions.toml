@@ -3,7 +3,6 @@
 kotlinVersion = "1.8.10"
 # kotlinx
 coroutinesVersion = "1.6.4"
-
 # multiplatform
 kermitVersion = "1.2.2"
 
@@ -20,10 +19,19 @@ mpp-kermit = { module = "co.touchlab:kermit", version.ref = "kermitVersion" }
 
 #===========ANDROID===========#
 #androidX
-android-x-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
-android-x-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
-android-x-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
-android-x-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentVersion" }
+androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
+
+androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.9.0" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.6.1" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2022.10.00" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
 #===========GRADLE PLUGINS ARTIFACTS===========#
 plugin-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
