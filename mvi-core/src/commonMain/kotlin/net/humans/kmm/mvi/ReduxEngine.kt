@@ -14,3 +14,5 @@ class ReduxEngine<S, M>(
         input.trySend(msg).isSuccess
     }
 }
+
+infix fun <S,M> ReduxEngine<S,M>.send(msg: M) = this.send(msg)
