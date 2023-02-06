@@ -16,12 +16,15 @@ fragmentVersion = "1.5.4"
 # kotlinx
 mpp-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
 mpp-kermit = { module = "co.touchlab:kermit", version.ref = "kermitVersion" }
+com-ionspin-kotlin-bignum = { module = "com.ionspin.kotlin:bignum", version = "0.3.7" }
 
 #===========ANDROID===========#
 #androidX
 androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
+androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentVersion" }
 
 androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.9.0" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.6.1" }

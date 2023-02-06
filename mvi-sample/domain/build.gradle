@@ -1,19 +1,9 @@
-//plugins {
-//    id 'java-library'
-//    alias(libs.plugins.org.jetbrains.kotlin.jvm)
-//}
-//
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_1_8
-//    targetCompatibility = JavaVersion.VERSION_1_8
-//}
-//
-//dependencies {
-//    implementation(libs.by.bulba.starthop.multiplatform.koin.jvm)
-//    implementation libs.net.humans.kmm.mvi.core
-//    implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.bom)
-//    implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.core)
-//    implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.core.jvm)
-//    implementation(libs.koin.core)
-//    implementation project(":utils:ktx")
-//}
+plugins {
+    id("multiplatform-library-convention")
+}
+
+dependencies {
+    commonMainImplementation(libs.mpp.kotlinx.coroutines)
+    commonMainImplementation(libs.com.ionspin.kotlin.bignum)
+    commonMainImplementation(project(":mvi-core"))
+}

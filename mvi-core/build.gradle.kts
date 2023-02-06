@@ -18,6 +18,7 @@ dependencies {
         androidMainImplementation(lifecycle.livedata)
         androidMainImplementation(lifecycle.viewModel)
         androidMainImplementation(lifecycle.runtime)
+        androidMainImplementation(fragment)
     }
 }
 
