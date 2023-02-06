@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Humans MVI</string>
+    <string name="commission_calculator__error_insufficient_balance">Insufficient balance</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -61,12 +62,20 @@ internal fun CommissionCalculatorView(
             onValueChange = {
                 onValueChange(it.text)
             },
+            isError = viewState.hasError(),
             visualTransformation = CurrencyAmountInputVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             textStyle = MaterialTheme.typography.displaySmall.copy(
                 color = MaterialTheme.colorScheme.primary
             )
         )
+        viewState.error?.also { safeError ->
+            Text(
+                text = stringResource(id = safeError),
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.error,
+            )
+        }
     }
 }
 
@@ -77,7 +86,7 @@ private fun PreviewCommissionCalculatorView() {
         CommissionCalculatorView(
             viewState = CommissionCalculatorViewState(
                 balance = "100",
-                inputAmount = TextFieldValue(text="50.00",selection = TextRange(5)),
+                inputAmount = TextFieldValue(text = "50.00", selection = TextRange(5)),
                 commission = "1",
                 cashback = "0.5",
             ),

@@ -10,7 +10,13 @@ object CommissionCalculatorRedux {
         val inputAmount: MoneyAmount,
         val commission: MoneyAmount,
         val cashback: MoneyAmount,
+        val error: Error? = null,
     ) {
+
+        sealed class Error {
+            object InsufficientBalance : Error()
+        }
+
         companion object {
             val DEFAULT = State(
                 balance = BigDecimal.ZERO.usd,
@@ -34,15 +40,23 @@ object CommissionCalculatorRedux {
         ) : Message()
 
         data class UpdateCommissionAndCashback(
+            val inputAmount: MoneyAmount,
             val commission: MoneyAmount,
             val cashback: MoneyAmount,
         ) : Message()
+
+        data class SetError(
+            val error: State.Error,
+        ) : Message()
+
+        object ErrorHandled : Message()
     }
 
     sealed class Effect {
         object Initialize : Effect()
 
         data class CalculateCommissionAndCashback(
+            val balance: MoneyAmount,
             val inputAmount: MoneyAmount,
         ) : Effect()
     }

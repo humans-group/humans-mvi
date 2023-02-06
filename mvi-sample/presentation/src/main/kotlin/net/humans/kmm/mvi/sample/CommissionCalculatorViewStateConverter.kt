@@ -1,5 +1,6 @@
 package net.humans.kmm.mvi.sample
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import com.ionspin.kotlin.bignum.decimal.RoundingMode
@@ -21,6 +22,7 @@ internal class CommissionCalculatorViewStateConverter :
             },
         commission = state.commission.toPresentationString(),
         cashback = state.cashback.toPresentationString(),
+        error = state.error?.toPresentationError(),
     )
 
     private fun MoneyAmount.toPresentationString(): String =
@@ -30,5 +32,11 @@ internal class CommissionCalculatorViewStateConverter :
 
     private fun Currency.toPresentationString(): String = when (this) {
         Currency.USD -> "$"
+    }
+
+    @StringRes
+    private fun CommissionCalculatorRedux.State.Error.toPresentationError(): Int = when(this) {
+        CommissionCalculatorRedux.State.Error.InsufficientBalance ->
+            R.string.commission_calculator__error_insufficient_balance
     }
 }

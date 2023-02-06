@@ -8,6 +8,13 @@ data class MoneyAmount(
 ) {
     operator fun times(value: Float): MoneyAmount =
         this.copy(amount = amount * BigDecimal.fromFloat(value))
+
+    operator fun compareTo(moneyAmount: MoneyAmount): Int {
+        check(this.currency == moneyAmount.currency) {
+            "Impossible to compare money amount. Non consistent currencies."
+        }
+        return this.amount.compareTo(moneyAmount.amount)
+    }
 }
 
 val BigDecimal.usd: MoneyAmount

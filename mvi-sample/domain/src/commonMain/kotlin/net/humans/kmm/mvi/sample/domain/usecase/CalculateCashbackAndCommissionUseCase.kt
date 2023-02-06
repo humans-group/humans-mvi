@@ -9,10 +9,18 @@ interface CalculateCashbackAndCommissionUseCase {
 }
 
 data class CalculateCashbackAndCommissionInput(
+    val balance: MoneyAmount,
     val inputAmount: MoneyAmount,
 )
 
-data class CalculateCashbackAndCommissionResult(
-    val cashback: MoneyAmount,
-    val commission: MoneyAmount,
-)
+sealed class CalculateCashbackAndCommissionResult {
+    data class Success(
+        val inputAmount: MoneyAmount,
+        val cashback: MoneyAmount,
+        val commission: MoneyAmount,
+    ) : CalculateCashbackAndCommissionResult()
+
+    sealed class Failed : CalculateCashbackAndCommissionResult() {
+        object InsufficientBalance : Failed()
+    }
+}

@@ -10,10 +10,13 @@ internal class RandomCalculateCashbackAndCommissionUseCase(
 ) : CalculateCashbackAndCommissionUseCase {
     override suspend fun execute(
         input: CalculateCashbackAndCommissionInput
-    ): CalculateCashbackAndCommissionResult {
-        return CalculateCashbackAndCommissionResult(
-            cashback = input.inputAmount * commissionPercentage,
-            commission = input.inputAmount * cashbackPercentage,
+    ): CalculateCashbackAndCommissionResult = if (input.inputAmount > input.balance) {
+        CalculateCashbackAndCommissionResult.Failed.InsufficientBalance
+    } else {
+        CalculateCashbackAndCommissionResult.Success(
+            inputAmount = input.inputAmount,
+            cashback = input.inputAmount * cashbackPercentage,
+            commission = input.inputAmount * commissionPercentage,
         )
     }
 

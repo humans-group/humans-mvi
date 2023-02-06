@@ -10,7 +10,7 @@ class ReduxEngine<S, M>(
     val input: SendChannel<M>,
     val output: StateFlow<S>,
 ) {
-    infix fun send(msg: M) {
+    fun send(msg: M) {
         input.trySend(msg).isSuccess
     }
 }

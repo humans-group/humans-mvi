@@ -16,6 +16,7 @@ import net.humans.kmm.mvi.sample.domain.CommissionCalculatorRedux.Message
 import net.humans.kmm.mvi.sample.domain.CommissionCalculatorRedux.State
 import net.humans.kmm.mvi.sample.domain.model.usd
 import net.humans.kmm.mvi.withEffect
+import net.humans.kmm.mvi.send
 
 internal class CommissionCalculatorViewModel(
     reducer: ComplexReducer<State, Message, Effect> = CommissionCalculatorReducer(),
@@ -37,6 +38,7 @@ internal class CommissionCalculatorViewModel(
     fun inputAmountChange(input: String) {
         val amount = input.toFloatOrNull()?.let { it / INPUT_AMOUNT_DIVIDER } ?: DEFAULT_AMOUNT
         val moneyAmount = BigDecimal.fromFloat(amount).usd
+        engine send Message.ErrorHandled
         engine send Message.UpdateInput(moneyAmount)
     }
 
