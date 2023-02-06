@@ -2,6 +2,7 @@ package net.humans.kmm.mvi.sample
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
+import com.ionspin.kotlin.bignum.decimal.RoundingMode
 import net.humans.kmm.mvi.ViewStateConverter
 import net.humans.kmm.mvi.sample.domain.CommissionCalculatorRedux
 import net.humans.kmm.mvi.sample.domain.model.Currency
@@ -13,15 +14,19 @@ internal class CommissionCalculatorViewStateConverter :
         state: CommissionCalculatorRedux.State
     ): CommissionCalculatorViewState = CommissionCalculatorViewState(
         balance = state.balance.toPresentationString(),
-        inputAmount = state.inputAmount.amount.toString().let {
-            TextFieldValue(text = it, TextRange(it.length))
-        },
+        inputAmount = state.inputAmount.amount
+            .times(100).intValue(false).toString()
+            .let {
+                TextFieldValue(text = it, TextRange(it.length))
+            },
         commission = state.commission.toPresentationString(),
         cashback = state.cashback.toPresentationString(),
     )
 
     private fun MoneyAmount.toPresentationString(): String =
-        this.amount.toString() + this.currency.toPresentationString()
+        this.amount.roundToDigitPosition(3, RoundingMode.FLOOR)
+            .toStringExpanded() +
+            this.currency.toPresentationString()
 
     private fun Currency.toPresentationString(): String = when (this) {
         Currency.USD -> "$"

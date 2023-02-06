@@ -34,10 +34,15 @@ internal class CommissionCalculatorViewModel(
         effectHandler = effectHandler,
     ).also { consume(it, _viewState, viewStateConverter) }
 
-    fun inputAmountChange(input: String) =
-        engine send Message.UpdateInput(BigDecimal.fromFloat(input.toFloat()).usd)
+    fun inputAmountChange(input: String) {
+        val amount = input.toFloatOrNull()?.let { it / INPUT_AMOUNT_DIVIDER } ?: DEFAULT_AMOUNT
+        val moneyAmount = BigDecimal.fromFloat(amount).usd
+        engine send Message.UpdateInput(moneyAmount)
+    }
 
     companion object {
         private const val TAG = "CommissionCalculatorViewModel"
+        private const val DEFAULT_AMOUNT = 0f
+        private const val INPUT_AMOUNT_DIVIDER = 100
     }
 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import net.humans.kmm.mvi.sample.ui.theme.HumansMVITheme
+import net.humans.kmm.mvi.sample.util.CurrencyAmountInputVisualTransformation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,6 +61,7 @@ internal fun CommissionCalculatorView(
             onValueChange = {
                 onValueChange(it.text)
             },
+            visualTransformation = CurrencyAmountInputVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             textStyle = MaterialTheme.typography.displaySmall.copy(
                 color = MaterialTheme.colorScheme.primary
