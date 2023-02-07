@@ -9,11 +9,11 @@ plugins {
 }
 
 dependencies {
-    val kotlinVersion = "1.7.21"
-    val agpVersion = "7.3.1"
+    val kotlinVersion = "1.8.10"
+    val agpVersion = "7.4.0"
     val detektVersion = "1.21.0"
     val ktlintVersion = "10.2.1"
-    val mobileMultiplatformVersion = "0.12.0"
+    val mobileMultiplatformVersion = "0.14.2"
     implementation("dev.icerock:mobile-multiplatform:$mobileMultiplatformVersion")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     implementation("com.android.tools.build:gradle:$agpVersion")
