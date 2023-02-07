@@ -4,6 +4,10 @@ plugins {
     id("com.vanniktech.maven.publish") version "0.24.0"
 }
 
+android {
+    namespace = "net.humans.kmm.mvi"
+}
+
 dependencies {
     with(libs.mpp) {
         commonMainImplementation(kotlinx.coroutines)
