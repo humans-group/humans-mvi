@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.coroutineScope
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.actor
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,7 @@ inline fun <State> LiveData<State>.scanObserve(
 
 @Suppress("FunctionName")
 @Deprecated("Use StateFlow instead of LiveData")
+@OptIn(ObsoleteCoroutinesApi::class)
 fun <State> SuspendScanObserver(
     scope: CoroutineScope,
     onChanged: suspend (prev: State?, curr: State) -> Unit
