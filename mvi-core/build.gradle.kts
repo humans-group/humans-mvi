@@ -1,15 +1,12 @@
 plugins {
     id("multiplatform-library-convention")
     id("dev.icerock.mobile.multiplatform.ios-framework")
+    id("publish-library-convention")
 }
 
 android {
     namespace = "net.humans.kmm.mvi"
 }
-
-ext["artifactId"] = "mvi-core"
-
-apply(plugin = "publish-library-convention")
 
 dependencies {
     with(libs.mpp) {
