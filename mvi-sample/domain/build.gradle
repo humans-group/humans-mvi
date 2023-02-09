@@ -1,0 +1,9 @@
+plugins {
+    id("multiplatform-library-convention")
+}
+
+dependencies {
+    commonMainImplementation(libs.mpp.kotlinx.coroutines)
+    commonMainImplementation(libs.com.ionspin.kotlin.bignum)
+    commonMainImplementation(project(":mvi-core"))
+}
